@@ -1,22 +1,20 @@
 'use strict'
 
-var validator = require('validator');
-var User = require('../models/user');
-var bcrypt = require('bcrypt-nodejs');
+const validator = require('validator');
+const User = require('../models/user');
+const bcrypt = require('bcrypt-nodejs');
 
-var controller = {
+const controller = {
     save: function(req, res){
-        var params = req.body;
+        let params = req.body;
 
-        var validate_name = !validator.isEmpty(params.name);
-        var validate_surname = !validator.isEmpty(params.surname);
-        var validate_email = !validator.isEmpty(params.email) && validator.isEmail(params.email);
-        var validate_password = !validator.isEmpty(params.password);
+        let validate_name = !validator.isEmpty(params.name);
+        let validate_email = !validator.isEmpty(params.email) && validator.isEmail(params.email);
+        let validate_password = !validator.isEmpty(params.password);
 
-        if (validate_name && validate_surname && validate_email && validate_password){
-            var user = new User();
+        if (validate_name && validate_email && validate_password){
+            let user = new User();
             user.name = params.name;
-            user.surname = params.surname;
             user.email = params.email.toLowerCase();
             user.role = 'ROLE_USER';
             user.image = null;
@@ -66,5 +64,4 @@ var controller = {
         } 
     }
 };
-
 module.exports = controller;

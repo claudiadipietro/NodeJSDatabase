@@ -1,8 +1,8 @@
 'use strict'
 
-var mongoose = require('mongoose');
-var app = require('./app');
-var port = process.env.PORT || 3500;
+const mongoose = require('mongoose');
+const app = require('./app');
+const port = process.env.PORT || 3500;
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/forum', { useNewUrlParser: true})
